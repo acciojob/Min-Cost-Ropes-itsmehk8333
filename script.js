@@ -1,27 +1,23 @@
-function mincost(arr)
-{ 
+function mincost(arr) {
+    // Sort array first
+    arr.sort((a, b) => a - b);
 
-	arr = arr.sort((a,b) => a-b);
+    let totalCost = 0;
 
-	var sum = 0
-const sumArr = arr.map((e) => {
-    
-    sum = sum+ e
-    return sum
-})
+    while (arr.length > 1) {
+        // Take two smallest ropes
+        let first = arr.shift();
+        let second = arr.shift();
 
- console.log(sumArr)
- 
- var totalSum = 0
- for(var i =1 ; i<sumArr.length ;i++){
-     totalSum += sumArr[i] 
- }
+        let cost = first + second;
+        totalCost += cost;
 
+        // Insert the new rope and keep sorted
+        arr.push(cost);
+        arr.sort((a, b) => a - b);
+    }
 
-	return totalSum
-//write your code here
-// return the min cost
-  
+    return totalCost;
 }
 
-module.exports=mincost;
+module.exports = mincost;
